@@ -17,7 +17,7 @@ export default function AboutSection() {
               <img
                 src="/images/1773022879971.jpeg"
                 alt="Hair by Eunice — women's braids"
-                className="w-full h-full object-cover"
+                loading="lazy" decoding="async" className="w-full h-full object-cover"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-primary text-primary-foreground p-6 rounded-2xl hidden md:block">
