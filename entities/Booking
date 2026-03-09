@@ -1,0 +1,65 @@
+{
+  "name": "Booking",
+  "type": "object",
+  "properties": {
+    "client_name": {
+      "type": "string",
+      "description": "Client's full name"
+    },
+    "email": {
+      "type": "string",
+      "description": "Client's email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Client's phone number"
+    },
+    "service_id": {
+      "type": "string",
+      "description": "ID of the booked service"
+    },
+    "service_name": {
+      "type": "string",
+      "description": "Name of the booked service"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Appointment date"
+    },
+    "time": {
+      "type": "string",
+      "description": "Appointment time slot"
+    },
+    "location": {
+      "type": "string",
+      "enum": ["Liverpool", "Walsall", "Birmingham"],
+      "description": "Location for the appointment"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "confirmed",
+        "cancelled",
+        "completed"
+      ],
+      "default": "pending",
+      "description": "Booking status"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Any special requests or notes"
+    }
+  },
+  "required": [
+    "client_name",
+    "email",
+    "phone",
+    "service_id",
+    "service_name",
+    "date",
+    "time",
+    "location"
+  ]
+}

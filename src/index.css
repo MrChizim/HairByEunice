@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Gold, Black & White theme */
+    --background: 0 0% 100%;          /* white */
+    --foreground: 0 0% 8%;            /* near black */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
+    --primary: 43 74% 49%;            /* gold */
+    --primary-foreground: 0 0% 8%;    /* black text on gold */
+    --secondary: 43 30% 93%;          /* light gold tint */
+    --secondary-foreground: 0 0% 15%;
+    --muted: 43 20% 95%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 43 50% 88%;             /* warm gold accent */
+    --accent-foreground: 0 0% 10%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 43 20% 85%;
+    --input: 43 20% 85%;
+    --ring: 43 74% 49%;
+    --radius: 0.625rem;
+    --chart-1: 43 74% 49%;
+    --chart-2: 43 50% 60%;
+    --chart-3: 0 0% 30%;
+    --chart-4: 43 30% 70%;
+    --chart-5: 43 60% 45%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 43 74% 49%;
+    --sidebar-primary-foreground: 0 0% 8%;
+    --sidebar-accent: 43 30% 93%;
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 43 20% 88%;
+    --sidebar-ring: 43 74% 49%;
+  }
+
+  .dark {
+    --background: 0 0% 6%;            /* near black */
+    --foreground: 0 0% 95%;           /* white text */
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 43 74% 52%;            /* gold */
+    --primary-foreground: 0 0% 6%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 85%;
+    --muted: 0 0% 13%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 43 40% 20%;
+    --accent-foreground: 43 60% 75%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 43 74% 52%;
+    --chart-1: 43 74% 52%;
+    --chart-2: 43 50% 45%;
+    --chart-3: 0 0% 55%;
+    --chart-4: 43 30% 55%;
+    --chart-5: 43 60% 40%;
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 92%;
+    --sidebar-primary: 43 74% 52%;
+    --sidebar-primary-foreground: 0 0% 6%;
+    --sidebar-accent: 0 0% 13%;
+    --sidebar-accent-foreground: 0 0% 92%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 43 74% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
