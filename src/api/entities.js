@@ -57,4 +57,5 @@ function makeEntity(table) {
 export const entities = {
   Booking: makeEntity('bookings'),
   Service: makeEntity('services'),
+  BlockedDate: makeEntity('blocked_dates'),
 };
