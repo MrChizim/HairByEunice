@@ -6,7 +6,7 @@ import { format, parseISO } from "date-fns";
 import {
   CheckCircle, XCircle, Clock, CalendarDays, Search,
   Phone, Mail, StickyNote, ChevronDown, Edit2, Check, Sparkles,
-  Scissors, Plus, Trash2, CalendarOff, X
+  Scissors, Plus, Trash2, CalendarOff, X, RotateCcw
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -113,6 +113,7 @@ function BookingsTab() {
   const [search, setSearch] = useState("");
   const [editingBooking, setEditingBooking] = useState(null);
   const [editForm, setEditForm] = useState({});
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
   const queryClient = useQueryClient();
 
   const { data: bookings = [], isLoading } = useQuery({
@@ -132,6 +133,18 @@ function BookingsTab() {
       setEditingBooking(null);
     },
   });
+
+  const deleteBooking = useMutation({
+    mutationFn: (id) => entities.Booking.delete(id),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["bookings"] }),
+  });
+
+  const clearHistory = async () => {
+    const old = bookings.filter(b => b.status === "completed" || b.status === "cancelled");
+    for (const b of old) await entities.Booking.delete(b.id);
+    queryClient.invalidateQueries({ queryKey: ["bookings"] });
+    setShowClearConfirm(false);
+  };
 
   const updateStatus = (id, status) => updateBooking.mutate({ id, data: { status } });
 
@@ -204,7 +217,7 @@ function BookingsTab() {
           <Input value={search} onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by name, service, or email…" className="pl-9 rounded-lg bg-card" />
         </div>
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap items-center">
           {FILTER_TABS.map((tab) => (
             <button key={tab.key} onClick={() => setStatusFilter(tab.key)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
@@ -221,6 +234,12 @@ function BookingsTab() {
               )}
             </button>
           ))}
+          {(counts["completed"] > 0 || counts["cancelled"] > 0) && (
+            <button onClick={() => setShowClearConfirm(true)}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-red-600 border border-red-200 hover:bg-red-50 transition-all bg-card">
+              <RotateCcw size={13} /> Clear History
+            </button>
+          )}
         </div>
       </div>
 
@@ -247,6 +266,25 @@ function BookingsTab() {
           </AnimatePresence>
         </div>
       )}
+
+      {/* Clear History Confirm */}
+      <Dialog open={showClearConfirm} onOpenChange={setShowClearConfirm}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="font-heading text-xl font-semibold">Clear Booking History?</DialogTitle>
+          </DialogHeader>
+          <p className="text-sm text-muted-foreground py-2">
+            This will permanently delete all <strong>completed</strong> and <strong>cancelled</strong> bookings
+            ({(counts["completed"] || 0) + (counts["cancelled"] || 0)} total). This cannot be undone.
+          </p>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowClearConfirm(false)}>Cancel</Button>
+            <Button onClick={clearHistory} className="bg-red-600 hover:bg-red-700 text-white">
+              Yes, Clear History
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Edit Modal */}
       <Dialog open={!!editingBooking} onOpenChange={() => setEditingBooking(null)}>

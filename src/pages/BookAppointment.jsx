@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle, Clock, ArrowLeft, CalendarDays, RefreshCw, MapPin } from "lucide-react";
+import { CheckCircle, Clock, ArrowLeft, CalendarDays, RefreshCw, MapPin, Copy, Check as CheckIcon } from "lucide-react";
 import { format, addDays, isSunday, isMonday, isBefore, startOfToday, parseISO } from "date-fns";
 
 const TIME_SLOTS = [
@@ -117,82 +117,17 @@ export default function BookAppointment() {
   };
 
   if (submitted) {
-    const bookingRef = `HBE-${Date.now().toString(36).toUpperCase()}`;
+    const dmMessage = `Hi Eunice! I just booked an appointment:\n\nName: ${formData.client_name}\nService: ${chosenService?.name || ""}\nDate: ${format(selectedDate, "d MMMM yyyy")}\nTime: ${selectedTime}\nLocation: ${selectedLocation}\n\nPlease find my £15 deposit attached.`;
+
     return (
-      <div className="min-h-screen flex items-center justify-center pt-20 pb-24 px-6">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-center max-w-lg w-full"
-        >
-          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="text-primary" size={32} />
-          </div>
-          <h2 className="font-heading text-3xl font-semibold text-foreground mb-2">
-            Booking Request Sent!
-          </h2>
-          <p className="text-muted-foreground mb-6">
-            Thank you, {formData.client_name}. Your appointment slot has been reserved.
-          </p>
-
-          {/* Booking summary */}
-          <div className="bg-card border border-border rounded-xl p-5 mb-6 text-left">
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Booking Summary</p>
-            <div className="space-y-2.5 text-sm">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Service</span>
-                <span className="font-medium">{chosenService?.name}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Date</span>
-                <span className="font-medium">{format(selectedDate, "EEEE, d MMMM yyyy")}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Time</span>
-                <span className="font-medium">{selectedTime}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Location</span>
-                <span className="font-medium">{selectedLocation}</span>
-              </div>
-              <div className="flex justify-between border-t border-border pt-2.5 mt-2.5">
-                <span className="text-muted-foreground">Total Price</span>
-                <span className="font-heading text-lg font-semibold text-foreground">£{chosenService?.price}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Next steps */}
-          <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-6 text-left">
-            <p className="text-sm font-semibold text-amber-900 mb-3">What happens next?</p>
-            <ol className="space-y-3">
-              {[
-                { step: "1", text: "Screenshot this page or note your booking details above." },
-                { step: "2", text: "DM Eunice on Instagram — send her your name, service, date and time." },
-                { step: "3", text: "Pay the £15 deposit via DM to secure your appointment. Without the deposit your slot is not confirmed." },
-                { step: "4", text: "Eunice will confirm your booking once the deposit is received. You're all set!" },
-              ].map(({ step, text }) => (
-                <li key={step} className="flex gap-3 text-sm text-amber-800">
-                  <span className="flex-shrink-0 w-5 h-5 bg-amber-200 text-amber-900 rounded-full flex items-center justify-center text-xs font-bold">{step}</span>
-                  <span>{text}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          <a
-            href={`https://www.instagram.com/direct/new/?username=_hairbyeunicen&text=Hi Eunice! I just booked:%0A%0AName: ${encodeURIComponent(formData.client_name)}%0AService: ${encodeURIComponent(chosenService?.name || "")}%0ADate: ${encodeURIComponent(format(selectedDate, "d MMMM yyyy"))}%0ATime: ${selectedTime}%0ALocation: ${encodeURIComponent(selectedLocation)}%0A%0AHere is my £15 deposit.`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors w-full justify-center"
-          >
-            DM @_hairbyeunicen on Instagram
-          </a>
-          <p className="text-xs text-muted-foreground mt-3">
-            Or find her at <strong>@_hairbyeunicen</strong> on Instagram
-          </p>
-        </motion.div>
-      </div>
+      <ConfirmationScreen
+        formData={formData}
+        chosenService={chosenService}
+        selectedDate={selectedDate}
+        selectedTime={selectedTime}
+        selectedLocation={selectedLocation}
+        dmMessage={dmMessage}
+      />
     );
   }
 
@@ -516,6 +451,111 @@ export default function BookAppointment() {
           )}
         </AnimatePresence>
       </div>
+    </div>
+  );
+}
+
+function ConfirmationScreen({ formData, chosenService, selectedDate, selectedTime, selectedLocation, dmMessage }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(dmMessage).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    });
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center pt-20 pb-24 px-6">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="text-center max-w-lg w-full"
+      >
+        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <CheckCircle className="text-primary" size={32} />
+        </div>
+        <h2 className="font-heading text-3xl font-semibold text-foreground mb-2">
+          Booking Request Sent!
+        </h2>
+        <p className="text-muted-foreground mb-6">
+          Thank you, {formData.client_name}. Your appointment slot has been reserved.
+        </p>
+
+        {/* Booking summary */}
+        <div className="bg-card border border-border rounded-xl p-5 mb-6 text-left">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Booking Summary</p>
+          <div className="space-y-2.5 text-sm">
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Service</span>
+              <span className="font-medium">{chosenService?.name}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Date</span>
+              <span className="font-medium">{format(selectedDate, "EEEE, d MMMM yyyy")}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Time</span>
+              <span className="font-medium">{selectedTime}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-muted-foreground">Location</span>
+              <span className="font-medium">{selectedLocation}</span>
+            </div>
+            <div className="flex justify-between border-t border-border pt-2.5 mt-2.5">
+              <span className="text-muted-foreground">Total Price</span>
+              <span className="font-heading text-lg font-semibold text-foreground">£{chosenService?.price}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Next steps */}
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-6 text-left">
+          <p className="text-sm font-semibold text-amber-900 mb-3">What happens next?</p>
+          <ol className="space-y-3">
+            {[
+              { n: "1", text: "Copy the message below using the button." },
+              { n: "2", text: "Open Instagram and DM @_hairbyeunicen — paste the message." },
+              { n: "3", text: "Send the £15 deposit in the same DM to secure your slot." },
+              { n: "4", text: "Eunice will confirm once the deposit is received." },
+            ].map(({ n, text }) => (
+              <li key={n} className="flex gap-3 text-sm text-amber-800">
+                <span className="flex-shrink-0 w-5 h-5 bg-amber-200 text-amber-900 rounded-full flex items-center justify-center text-xs font-bold">{n}</span>
+                <span>{text}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        {/* Pre-filled message + copy */}
+        <div className="bg-card border border-border rounded-xl p-4 mb-4 text-left">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">Your DM Message</p>
+          <pre className="text-sm text-foreground whitespace-pre-wrap font-body leading-relaxed">{dmMessage}</pre>
+          <button
+            onClick={handleCopy}
+            className={`mt-3 flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-full transition-all w-full justify-center border ${
+              copied
+                ? "bg-green-50 border-green-200 text-green-700"
+                : "bg-secondary border-border text-foreground hover:bg-secondary/70"
+            }`}
+          >
+            {copied ? <CheckIcon size={14} /> : <Copy size={14} />}
+            {copied ? "Copied!" : "Copy Message"}
+          </button>
+        </div>
+
+        <a
+          href="https://www.instagram.com/_hairbyeunicen/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors w-full justify-center"
+        >
+          Open @_hairbyeunicen on Instagram
+        </a>
+        <p className="text-xs text-muted-foreground mt-3">
+          Copy the message above, then paste it in the DM
+        </p>
+      </motion.div>
     </div>
   );
 }
