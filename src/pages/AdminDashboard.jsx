@@ -282,7 +282,7 @@ function BookingsTab() {
                 <Input value={editForm.phone || ""} onChange={e => setEditForm({ ...editForm, phone: e.target.value })} />
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <Label className="text-xs mb-1 block text-muted-foreground">Date</Label>
                 <Input type="date" value={editForm.date || ""} onChange={e => setEditForm({ ...editForm, date: e.target.value })} />

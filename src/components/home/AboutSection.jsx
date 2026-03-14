@@ -55,7 +55,7 @@ export default function AboutSection() {
               </p>
             </div>
 
-            <div className="flex gap-8 mt-8 pt-8 border-t border-border">
+            <div className="flex flex-wrap gap-8 mt-8 pt-8 border-t border-border">
               <div>
                 <p className="font-heading text-2xl font-semibold text-foreground">Men</p>
                 <p className="text-sm text-muted-foreground">Hair too</p>

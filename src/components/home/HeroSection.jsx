@@ -27,7 +27,7 @@ export default function HeroSection() {
           <p className="text-background/70 text-sm tracking-[0.3em] uppercase mb-4 font-body">
             Afro Hair Specialist · Liverpool · Walsall · Birmingham
           </p>
-          <h1 className="font-heading text-5xl md:text-7xl font-semibold text-background leading-[1.1] mb-6">
+          <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl font-semibold text-background leading-[1.1] mb-6">
             Braids &amp;{" "}
             <span className="italic font-light">Beyond</span>
           </h1>

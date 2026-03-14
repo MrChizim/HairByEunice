@@ -344,7 +344,7 @@ export default function BookAppointment() {
                           </span>
                         )}
                       </div>
-                      <div className="grid grid-cols-3 gap-2">
+                      <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
                         {availableSlots.map((slot) => {
                           const taken = takenSlots.has(slot);
                           const selected = selectedTime === slot;
