@@ -129,8 +129,9 @@ export default function Layout({ children, currentPageName }) {
               </div>
             </div>
           </div>
-          <div className="border-t border-background/10 mt-12 pt-8 text-center text-xs text-background/40">
-            © 2026 Hair by Eunice. All rights reserved.
+          <div className="border-t border-background/10 mt-12 pt-8 flex items-center justify-between text-xs text-background/40">
+            <span>© 2026 Hair by Eunice. All rights reserved.</span>
+            <Link to="/AdminDashboard" className="hover:text-background/60 transition-colors">Admin</Link>
           </div>
         </div>
       </footer>
