@@ -24,14 +24,14 @@ export default function HeroSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-xl"
         >
-          <p className="text-background/70 text-sm tracking-[0.3em] uppercase mb-4 font-body">
+          <p className="text-primary/80 text-sm tracking-[0.3em] uppercase mb-4 font-body">
             Afro Hair Specialist · Liverpool · Walsall · Birmingham
           </p>
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl font-semibold text-background leading-[1.1] mb-6">
+          <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl font-semibold text-white leading-[1.1] mb-6">
             Braids &amp;{" "}
-            <span className="italic font-light">Beyond</span>
+            <span className="italic font-light text-primary">Beyond</span>
           </h1>
-          <p className="text-background/70 text-lg leading-relaxed mb-10 max-w-md font-body font-light">
+          <p className="text-white/70 text-lg leading-relaxed mb-10 max-w-md font-body font-light">
             Expert afro hairstylist specialising in braiding for men, women &amp; kids.
             Home service available. £15 deposit to book.
           </p>
@@ -45,7 +45,7 @@ export default function HeroSection() {
             </Link>
             <Link
               to={createPageUrl("Services")}
-              className="inline-flex items-center justify-center gap-3 border border-background/30 text-background px-8 py-3.5 rounded-full text-sm font-medium tracking-wide hover:bg-background/10 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-3 border border-white/30 text-white px-8 py-3.5 rounded-full text-sm font-medium tracking-wide hover:bg-white/10 transition-all duration-300"
             >
               View Services
             </Link>
@@ -63,9 +63,9 @@ export default function HeroSection() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
-          className="w-5 h-8 border-2 border-background/40 rounded-full flex justify-center pt-1.5"
+          className="w-5 h-8 border-2 border-white/40 rounded-full flex justify-center pt-1.5"
         >
-          <div className="w-1 h-1.5 bg-background/60 rounded-full" />
+          <div className="w-1 h-1.5 bg-white/60 rounded-full" />
         </motion.div>
       </motion.div>
     </section>

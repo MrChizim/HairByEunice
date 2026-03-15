@@ -13,7 +13,7 @@ export default function CTASection() {
           alt="Hair by Eunice — men's cornrows"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-foreground/70" />
+        <div className="absolute inset-0 bg-black/65" />
       </div>
 
       <motion.div
@@ -30,10 +30,10 @@ export default function CTASection() {
           style={{filter: "brightness(0) saturate(100%) invert(68%) sepia(56%) saturate(500%) hue-rotate(5deg) brightness(95%)"}}
 
         />
-        <h2 className="font-heading text-4xl md:text-5xl font-semibold text-background mb-6">
+        <h2 className="font-heading text-4xl md:text-5xl font-semibold text-white mb-6">
           Ready for Your <span className="italic font-light">Transformation?</span>
         </h2>
-        <p className="text-background/70 mb-10 leading-relaxed">
+        <p className="text-white/70 mb-10 leading-relaxed">
           Book your appointment today and experience the difference 
           of personalised, luxury hair care.
         </p>
