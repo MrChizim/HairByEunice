@@ -31,7 +31,7 @@ export default function Layout({ children, currentPageName }) {
       <header className="fixed top-0 left-0 right-0 z-50 pt-4 px-4 pointer-events-none">
         <div className="max-w-6xl mx-auto flex items-center justify-between bg-background/80 backdrop-blur-md border border-border/60 rounded-full px-4 py-2.5 shadow-md pointer-events-auto">
           <Link to={createPageUrl("Home")} className="group">
-            <img src="/images/logoo.png" alt="Hair by Eunice" className="h-20 w-auto" />
+            <img src="/images/logoo.png" alt="Hair by Eunice" className="h-20 w-auto" style={{filter: GOLD_FILTER}} />
           </Link>
 
           {/* Desktop Nav */}

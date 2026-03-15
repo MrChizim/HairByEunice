@@ -60,8 +60,8 @@ export default function ServicesPreview() {
                   alt={item.title}
                   loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent" />
-                <div className="absolute bottom-4 left-4 bg-background/90 backdrop-blur-sm p-3 rounded-xl">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-sm p-3 rounded-xl">
                   <item.icon size={20} className="text-primary" />
                 </div>
               </div>
