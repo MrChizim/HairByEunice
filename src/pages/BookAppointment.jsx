@@ -510,8 +510,8 @@ function ConfirmationScreen({ formData, chosenService, selectedDate, selectedTim
         </div>
 
         {/* Next steps */}
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-6 text-left">
-          <p className="text-sm font-semibold text-amber-900 mb-3">What happens next?</p>
+        <div className="bg-amber-950/40 border border-amber-800/40 rounded-xl p-5 mb-6 text-left">
+          <p className="text-sm font-semibold text-amber-300 mb-3">What happens next?</p>
           <ol className="space-y-3">
             {[
               { n: "1", text: "Copy the message below using the button." },
@@ -519,8 +519,8 @@ function ConfirmationScreen({ formData, chosenService, selectedDate, selectedTim
               { n: "3", text: "Send the £15 deposit in the same DM to secure your slot." },
               { n: "4", text: "Eunice will confirm once the deposit is received." },
             ].map(({ n, text }) => (
-              <li key={n} className="flex gap-3 text-sm text-amber-800">
-                <span className="flex-shrink-0 w-5 h-5 bg-amber-200 text-amber-900 rounded-full flex items-center justify-center text-xs font-bold">{n}</span>
+              <li key={n} className="flex gap-3 text-sm text-amber-200/80">
+                <span className="flex-shrink-0 w-5 h-5 bg-amber-700/60 text-amber-200 rounded-full flex items-center justify-center text-xs font-bold">{n}</span>
                 <span>{text}</span>
               </li>
             ))}

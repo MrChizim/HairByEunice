@@ -46,7 +46,7 @@ const SEED_SERVICES = [
 const CATEGORIES = ["braids", "cornrows", "twists", "men", "kids"];
 
 const STATUS_CONFIG = {
-  pending:   { label: "Pending",   color: "bg-amber-100 text-amber-800 border-amber-200" },
+  pending:   { label: "Pending",   color: "bg-amber-900/40 text-amber-300 border-amber-700/50" },
   confirmed: { label: "Confirmed", color: "bg-green-100 text-green-800 border-green-200" },
   cancelled: { label: "Cancelled", color: "bg-red-100 text-red-800 border-red-200" },
   completed: { label: "Completed", color: "bg-blue-100 text-blue-800 border-blue-200" },
@@ -711,7 +711,7 @@ function BlockedDatesTab() {
           </motion.div>
         )}
         {selectedDate && blockedSet.has(format(selectedDate, "yyyy-MM-dd")) && (
-          <p className="text-sm text-amber-600 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3">
+          <p className="text-sm text-amber-300 bg-amber-950/40 border border-amber-700/40 rounded-lg px-4 py-3">
             This date is already blocked.
           </p>
         )}
