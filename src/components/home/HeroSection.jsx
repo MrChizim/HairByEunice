@@ -14,7 +14,7 @@ export default function HeroSection() {
           alt="Hair by Eunice — knotless braids"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 via-foreground/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-32">

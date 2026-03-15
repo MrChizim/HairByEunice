@@ -96,12 +96,12 @@ export default function Layout({ children, currentPageName }) {
       <main>{children}</main>
 
       {/* Footer */}
-      <footer className="bg-foreground text-background py-16">
+      <footer className="bg-[#0f0f0f] text-white py-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
             <div className="flex flex-col items-center md:items-start">
               <img src="/images/logoo.png" alt="Hair by Eunice" className="h-14 w-auto mb-4" style={{filter: GOLD_FILTER}} />
-              <p className="text-background/60 text-sm leading-relaxed">
+              <p className="text-white/60 text-sm leading-relaxed">
                 Afro hair specialist serving Liverpool, Walsall & Birmingham. Braiding for men, women & kids. Home service available.
               </p>
               <a
@@ -115,7 +115,7 @@ export default function Layout({ children, currentPageName }) {
             </div>
             <div>
               <h4 className="font-heading text-lg font-semibold mb-4">Areas Covered</h4>
-              <div className="space-y-2 text-sm text-background/60">
+              <div className="space-y-2 text-sm text-white/60">
                 <p>Liverpool</p>
                 <p>Walsall, Birmingham</p>
                 <p>Home service available</p>
@@ -123,15 +123,15 @@ export default function Layout({ children, currentPageName }) {
             </div>
             <div>
               <h4 className="font-heading text-lg font-semibold mb-4">Booking Info</h4>
-              <div className="space-y-2 text-sm text-background/60">
+              <div className="space-y-2 text-sm text-white/60">
                 <p>£15 deposit required to secure your appointment</p>
                 <p className="pt-2">Instagram: <a href="https://instagram.com/_hairbyeunicen" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">@_hairbyeunicen</a></p>
               </div>
             </div>
           </div>
-          <div className="border-t border-background/10 mt-12 pt-8 flex items-center justify-between text-xs text-background/40">
+          <div className="border-t border-white/10 mt-12 pt-8 flex items-center justify-between text-xs text-white/40">
             <span>© 2026 Hair by Eunice. All rights reserved.</span>
-            <Link to="/AdminDashboard" className="hover:text-background/60 transition-colors">Admin</Link>
+            <Link to="/AdminDashboard" className="hover:text-white/60 transition-colors">Admin</Link>
           </div>
         </div>
       </footer>
